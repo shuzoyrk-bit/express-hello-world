@@ -35,6 +35,7 @@ app.ws('/ws', (ws, req) => {
         socket.send(JSON.stringify(botMessage))
       }
     }) 
+  })
 
   ws.on('close', () => {
     connects = connects.filter((conn) => conn !== ws)
