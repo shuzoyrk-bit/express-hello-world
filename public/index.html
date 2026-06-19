@@ -64,11 +64,15 @@
           const { id, text } = JSON.parse(msg.data)
           const messageList = document.querySelector('.messages')
           const li = document.createElement('li')
-            if (id === myId) {
-              li.textContent = `(${id})自分:` + text
-            } else {
-              li.textContent = id + ': ' + text
-            }
+          if (id === myId) {
+            li.textContent = `自分: ${text}`
+          }
+          else if (id === "BOT") {
+            li.textContent = `🤖BOT: ${text}`
+          }
+          else {
+            li.textContent = `${id}: ${text}`
+          }
           messageList.appendChild(li)
         }
 
