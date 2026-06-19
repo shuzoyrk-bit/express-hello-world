@@ -4,34 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat App</title>
-    <style>
-      .chat {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-      }
-      .messages {
-        flex: 1;
-        overflow-y: auto;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      .form {
-        display: flex;
-      }
-      .input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-      }
-      .submit {
-        padding: 10px;
-        border: 1px solid #ccc;
-        background: #eee;
-        cursor: pointer;
-      }
-    </style>
+    <link rel = "stylesheet" href="style.css">
   </head>
   <body>
     <div class="chat">
@@ -64,16 +37,21 @@
           const { id, text } = JSON.parse(msg.data)
           const messageList = document.querySelector('.messages')
           const li = document.createElement('li')
+          li.classList.add('message')
           if (id === myId) {
             li.textContent = `自分: ${text}`
+            li.classList.add('my-message')
           }
           else if (id === "BOT") {
             li.textContent = `🤖BOT: ${text}`
+            li.classList.add('bot-message')
           }
           else {
             li.textContent = `${id}: ${text}`
+            li.classList.add('other-message')
           }
           messageList.appendChild(li)
+          messageList.scrollTop = messageList.scrollHeight
         }
 
         ws.onerror = function (error) {
